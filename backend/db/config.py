@@ -6,7 +6,7 @@ TORTOISE_ORM = {
     },
     "apps": {
         "models": {
-            "models": ["backend.models.role_model"],
+            "models": ["backend.models.role_model", "backend.models.user_model"],
             "default_connection": "default",
         },
     },
