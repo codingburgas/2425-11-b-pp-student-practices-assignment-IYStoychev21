@@ -13,8 +13,8 @@ async def get_test_train_split():
 async def get_model():
     return await models_model.Models.get(id=1).select_related("hyper_params", "params", "test_train_split")
 
-async def set_params(weights, bias):
-    params = await models_model.Params.create(weights = json.dumps(weights.tolist()), bias = bias)
+async def set_params(weights, bias, x_mean, x_std):
+    params = await models_model.Params.create(weights = json.dumps(weights.tolist()), bias = bias, x_mean = x_mean, x_std = x_std)
     return params
 
 async def add_model(accuracy: float):

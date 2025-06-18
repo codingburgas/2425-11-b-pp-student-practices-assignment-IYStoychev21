@@ -22,6 +22,8 @@ class Params(models.Model):
     id = fields.IntField(pk=True)
     weights = fields.JSONField(default=list[list])
     bias = fields.FloatField(default=0.0)
+    x_mean = fields.JSONField(default=list)
+    x_std = fields.JSONField(default=list)
 
     class Meta:
         table = "params"

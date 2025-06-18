@@ -16,7 +16,9 @@ services:
             - db
 
     backend:
-        build: backend
+        build: 
+          context: backend
+          dockerfile: Dockerfile
         command: "fastapi dev main.py --host 0.0.0.0"
         depends_on:
             - db

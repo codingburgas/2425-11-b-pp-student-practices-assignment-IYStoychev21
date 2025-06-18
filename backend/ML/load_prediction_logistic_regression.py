@@ -21,6 +21,8 @@ class LoanPrediction:
         self.y = self.df['loan_status'].values.reshape(-1, 1)
 
         self.X = (self.X - np.mean(self.X, axis=0)) / np.std(self.X, axis=0)
+        self.X_mean = np.mean(self.X, axis=0)
+        self.X_std = np.std(self.X, axis=0)
 
         self._train_test_split()
 
@@ -49,7 +51,7 @@ class LoanPrediction:
             self.bias -= self.learning_rate * db
 
     def predict(self, X_input):
-        X_input = (X_input - np.mean(self.X, axis=0)) / np.std(self.X, axis=0)
+        X_input = (X_input - self.X_mean) / self.X_std
         z = np.dot(X_input, self.weights) + self.bias
         return (self._sigmoid(z) >= 0.5).astype(int)
 
