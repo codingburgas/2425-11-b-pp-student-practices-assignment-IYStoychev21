@@ -28,6 +28,18 @@ class Params(models.Model):
     class Meta:
         table = "params"
 
+class ModelMetrics(models.Model):
+    id = fields.IntField(pk=True)
+    accuracy = fields.FloatField(default=0.0)
+    precision = fields.FloatField(default=0.0)
+    recall = fields.FloatField(default=0.0)
+    f1_score = fields.FloatField(default=0.0)
+    confusion_matrix = fields.JSONField(default=list[list])
+
+    class Meta:
+        table = "model_metrics"
+
+
 class Models(models.Model):
     id = fields.IntField(pk=True)
     hyper_params = fields.ForeignKeyField(
@@ -45,7 +57,11 @@ class Models(models.Model):
             related_name="models",
             on_delete=CASCADE,
         )
-    accuracy = fields.FloatField(default=0.0)
+    model_metrics = fields.ForeignKeyField(
+            "models.ModelMetrics",
+            related_name="models",
+            on_delete=CASCADE,
+        )
 
     class Meta:
         table = "models"

@@ -59,6 +59,34 @@ class LoanPrediction:
         predictions = self.predict(self.X_test)
         return np.mean(predictions == self.y_test)
 
+    def get_precision(self):
+        y_pred = self.predict(self.X_test).astype(int)
+        y_true = self.y_test.astype(int)
+        tp = np.sum((y_pred == 1) & (y_true == 1))
+        fp = np.sum((y_pred == 1) & (y_true == 0))
+        return tp / (tp + fp + 1e-8)
+
+    def get_recall(self):
+        y_pred = self.predict(self.X_test).astype(int)
+        y_true = self.y_test.astype(int)
+        tp = np.sum((y_pred == 1) & (y_true == 1))
+        fn = np.sum((y_pred == 0) & (y_true == 1))
+        return tp / (tp + fn + 1e-8)
+
+    def get_f1_score(self):
+        p = self.get_precision()
+        r = self.get_recall()
+        return 2 * p * r / (p + r + 1e-8)
+
+    def get_confusion_matrix(self):
+        y_pred = self.predict(self.X_test).astype(int)
+        y_true = self.y_test.astype(int)
+        tp = np.sum((y_pred == 1) & (y_true == 1))
+        tn = np.sum((y_pred == 0) & (y_true == 0))
+        fp = np.sum((y_pred == 1) & (y_true == 0))
+        fn = np.sum((y_pred == 0) & (y_true == 1))
+        return np.array([[tn, fp], [fn, tp]])
+
     def get_weights(self):
         return self.weights
 

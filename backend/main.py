@@ -21,9 +21,9 @@ async def startup_event():
     except:
         model = load_prediction_logistic_regression.LoanPrediction("./training-dataset/loan_approval_dataset.csv", train_size=test_train_split.training, learning_rate=hyper_params.learning_rate, epochs=hyper_params.epochs)
         model.train()
-        print(model.X_std)
         await models_repository.set_params(weights=model.get_weights(), bias=model.get_bias(), x_mean=model.X_mean.tolist(), x_std=model.X_std.tolist())
-        await models_repository.add_model(accuracy=model.get_accuracy())
+        await models_repository.set_model_metrics(model.get_accuracy(), model.get_precision(), model.get_f1_score(), model.get_recall(), model.get_confusion_matrix())
+        await models_repository.add_model()
 
 app.include_router(auth_endpoints.router, prefix="/api/auth", tags=["Auth"])
 app.include_router(user_endpoints.router, prefix="/api/users", tags=["Users"])
