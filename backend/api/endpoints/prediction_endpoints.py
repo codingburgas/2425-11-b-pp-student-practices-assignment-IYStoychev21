@@ -15,7 +15,6 @@ async def predict(request: Request, prediction_data: prediction_schema.Predictio
     except HTTPException as e:
         raise e
 
-
 @router.get("/get/all", response_model=list[prediction_schema.PredictionOut])
 async def get_current_user_predictions(request: Request, credentials: HTTPAuthorizationCredentials = Depends(security)):
     user_id = request.state.user_id

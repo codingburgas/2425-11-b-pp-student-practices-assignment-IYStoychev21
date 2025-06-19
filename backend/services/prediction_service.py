@@ -1,6 +1,5 @@
 from fastapi.exceptions import HTTPException
 from backend.repositories import models_repository, prediction_repository, user_repository
-from backend.core.security import create_access_token
 from backend.schemas import prediction_schema
 from backend.ML import load_prediction_logistic_regression
 import numpy as np

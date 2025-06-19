@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from backend.db.init import init_db
-from backend.api.endpoints import auth_endpoints, user_endpoints, prediction_endpoints
+from backend.api.endpoints import auth_endpoints, user_endpoints, prediction_endpoints, model_endpoints
 from backend.middlewares import auth_middleware
 from backend.ML import load_prediction_logistic_regression
 from backend.repositories import models_repository
@@ -28,3 +28,4 @@ async def startup_event():
 app.include_router(auth_endpoints.router, prefix="/api/auth", tags=["Auth"])
 app.include_router(user_endpoints.router, prefix="/api/users", tags=["Users"])
 app.include_router(prediction_endpoints.router, prefix="/api/predictions", tags=["Predictions"])
+app.include_router(model_endpoints.router, prefix="/api/models", tags=["Models"])
