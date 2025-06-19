@@ -7,7 +7,7 @@ router = APIRouter()
 security = HTTPBearer()
 
 @router.get("/get", response_model=model_schema.ModelOut)
-async def predict(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_model(credentials: HTTPAuthorizationCredentials = Depends(security)):
     try:
         model = await model_service.get_model()
         return model
