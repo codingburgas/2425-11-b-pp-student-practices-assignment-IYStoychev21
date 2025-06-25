@@ -4,9 +4,17 @@ from backend.api.endpoints import auth_endpoints, user_endpoints, prediction_end
 from backend.middlewares import auth_middleware
 from backend.ML import load_prediction_logistic_regression
 from backend.repositories import models_repository
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.add_middleware(auth_middleware.AuthMiddleware)
 
 @app.on_event("startup")
