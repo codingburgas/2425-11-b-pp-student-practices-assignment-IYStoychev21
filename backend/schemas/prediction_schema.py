@@ -1,8 +1,10 @@
 from pydantic import BaseModel
 from backend.schemas import user_schema
+from datetime import datetime
 
 class PredictionCreate(BaseModel):
     no_of_dependents: int
+    title: str
     education: bool
     self_employed: bool
     income_amount: int
@@ -32,5 +34,7 @@ class PredictionInputsOut(BaseModel):
 class PredictionOut(BaseModel):
     id: int
     prediction: bool
+    created_at: datetime
+    title: str
     prediction_inputs: PredictionInputsOut
     user: user_schema.UserOut

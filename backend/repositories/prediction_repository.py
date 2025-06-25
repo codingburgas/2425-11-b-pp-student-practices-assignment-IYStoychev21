@@ -17,8 +17,8 @@ async def insert_prediction_input(prediction_data: prediction_schema.PredictionC
         bank_asset_value = prediction_data.bank_asset_value
     )
 
-async def insert_prediction(prediction: bool, user: user_model.User, prediction_inputs: predictions_model.PredictionInputs):
-    return await predictions_model.Predictions.create(prediction=prediction, user=user, prediction_inputs=prediction_inputs)
+async def insert_prediction(prediction: bool, user: user_model.User, prediction_inputs: predictions_model.PredictionInputs, title: str):
+    return await predictions_model.Predictions.create(prediction=prediction, user=user, prediction_inputs=prediction_inputs, title=title)
 
 async def get_predictions(user: user_model.User):
     return await predictions_model.Predictions.all().filter(user=user).select_related("user__role", "prediction_inputs")

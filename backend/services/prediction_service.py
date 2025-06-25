@@ -34,7 +34,7 @@ async def make_prediction(user_id: int, prediction_data: prediction_schema.Predi
 
     X_sample = np.array(X_sample).reshape(1, -1)
     prediction = model.predict(X_sample)
-    prediction_out = await prediction_repository.insert_prediction(prediction[0][0], user, prediction_input)
+    prediction_out = await prediction_repository.insert_prediction(prediction[0][0], user, prediction_input, prediction_data.title)
     return prediction_out
 
 async def get_predictions(user_id: int, user_to_retrieve_id: int):

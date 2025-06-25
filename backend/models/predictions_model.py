@@ -3,6 +3,8 @@ from tortoise import fields, models
 class Predictions(models.Model):
     id = fields.IntField(pk=True)
     prediction = fields.BooleanField()
+    created_at = fields.DatetimeField(auto_now_add=True)
+    title = fields.CharField(max_length=512)
     prediction_inputs = fields.ForeignKeyField(
         "models.PredictionInputs",
         related_name="predictions",
