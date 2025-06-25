@@ -29,7 +29,7 @@ export default function Login() {
         mutationFn: authAPI.logIn,
         onSuccess: (data) => {
             localStorage.setItem("token", data.token)
-            // window.location.href = '/models'
+            window.location.href = '/predictions'
         },
         onError: (error: ErrorType) => {
             toast.error(error.response.data.detail)
