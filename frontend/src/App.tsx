@@ -6,6 +6,7 @@ import Protected from './components/Protected'
 import Login from './routes/Login'
 import Signup from './routes/Signup'
 import Predictions from './routes/Predictions'
+import Account from './routes/Account'
 
 import { SidebarProvider } from "@/components/ui/sidebar"
 
@@ -18,6 +19,7 @@ function App() {
         { path: '/', element: <Login /> },
         { path: '/signup', element: <Signup /> },
         { path: '/predictions', element: <Protected><Predictions /></Protected> },
+        { path: '/account', element: <Protected><Account /></Protected> },
     ])
 
     return (

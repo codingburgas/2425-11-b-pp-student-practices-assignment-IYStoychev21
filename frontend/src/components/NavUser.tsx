@@ -84,7 +84,7 @@ export default function NavUser({ user, className }: { user: UserType, className
                         <DropdownMenuGroup>
                             <DropdownMenuItem>
                                 <BadgeCheck />
-                                <Button variant="ghost" className="w-full justify-start cursor-pointer">
+                                <Button onClick={() => { navigate("/account") }} variant="ghost" className="w-full justify-start cursor-pointer">
                                     Account
                                 </Button>
                             </DropdownMenuItem>

@@ -29,7 +29,7 @@ export default function AppSidebar() {
             items: [
                 {
                     title: "Prediction",
-                    url: '/prediction',
+                    url: '/predictions',
                     icon: ChartBar,
                 },
                 {
