@@ -6,7 +6,8 @@ import { userAPI } from "@/apis/userAPI"
 
 import NavUser from "./NavUser"
 
-import { User, ChartBar, Users, Bot } from "lucide-react"
+import { ChartBar, Users, Bot } from "lucide-react"
+import { Skeleton } from "./ui/skeleton"
 
 import {
     Sidebar,
@@ -61,19 +62,6 @@ export default function AppSidebar() {
         }
     }, [errorUser, navigate])
 
-    if (!isLoadingUser && user!.role.role_name === 'admin') {
-        data.push({
-            title: "Admin",
-            items: [
-                {
-                    title: "Users Managment",
-                    url: '/users/managment',
-                    icon: User,
-                }
-            ],
-        });
-    }
-
     return (
         <Sidebar>
             <SidebarContent>
@@ -106,7 +94,11 @@ export default function AppSidebar() {
                 }
             </SidebarContent >
             <SidebarFooter>
-                <NavUser user={user!} />
+                {
+
+                    isLoadingUser ? <Skeleton className="w-24 h-4" /> :
+                        <NavUser user={user!} />
+                }
             </SidebarFooter>
         </Sidebar>
     )
