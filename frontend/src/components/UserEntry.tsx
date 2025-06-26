@@ -89,7 +89,7 @@ export default function UserEntry({ user }: { user: UserType }) {
                 </div>
 
                 <div className="flex w-full items-center gap-8 justify-end">
-                    <Button className="cursor-pointer" variant="secondary" onClick={() => { setIsDeleting(true) }}>View</Button>
+                    <Button className="cursor-pointer" variant="secondary" onClick={() => { navigate(`/users/${user.id}`) }}>View</Button>
                     {
                         currentUser != undefined ?
                             currentUser.role.id === 2 && <Button className="cursor-pointer" variant="secondary" onClick={() => { setIsChangeRole(true) }}>Change Role</Button>
