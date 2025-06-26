@@ -24,7 +24,7 @@ export const userAPI = {
     getUser: async (id: number) => {
         return (await axios.get<UserType>(`/api/users/get/${id}`, axiosConfig)).data
     },
-    updateUserRole: async (userId: number, roleId: number) => {
+    updateUserRole: async (userId: number, roleId: string) => {
         return (await axios.put<UserType>(`/api/users/update/role/${userId}/${roleId}`, {}, axiosConfig)).data
     },
 }

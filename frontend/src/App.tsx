@@ -7,6 +7,7 @@ import Login from './routes/Login'
 import Signup from './routes/Signup'
 import Predictions from './routes/Predictions'
 import Account from './routes/Account'
+import UserManagment from './routes/UserManagment'
 
 import { SidebarProvider } from "@/components/ui/sidebar"
 
@@ -20,6 +21,7 @@ function App() {
         { path: '/signup', element: <Signup /> },
         { path: '/predictions', element: <Protected><Predictions /></Protected> },
         { path: '/account', element: <Protected><Account /></Protected> },
+        { path: '/users', element: <Protected><UserManagment /></Protected> },
     ])
 
     return (
