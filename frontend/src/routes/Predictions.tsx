@@ -46,6 +46,7 @@ export default function Predictions() {
                                 <div className="flex w-full items-center grow">
                                     <p className="grow w-[1%] gap-2">Title</p>
                                     <p className="grow w-[1%] gap-2">Status</p>
+                                    <p className="grow w-[1%] gap-2">Time</p>
                                     <p className="grow w-[1%] gap-2">Date</p>
                                 </div>
 

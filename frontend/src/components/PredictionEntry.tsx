@@ -40,7 +40,8 @@ export default function PredictionEntry({ prediction }: { prediction: Prediction
                 <div className="flex w-full items-center grow">
                     <p className="grow w-[1%] gap-2">{prediction.title}</p>
                     <p className="grow w-[1%] gap-2">{prediction.prediction ? 'Approaved' : 'Rejected'}</p>
-                    <p className="grow w-[1%] gap-2">{DateTime.fromISO(prediction.created_at).toFormat("HH:mm:ss dd-MM-yyyy")}</p>
+                    <p className="grow w-[1%] gap-2">{DateTime.fromISO(prediction.created_at).toFormat("HH:mm:ss")}</p>
+                    <p className="grow w-[1%] gap-2">{DateTime.fromISO(prediction.created_at).toFormat("dd-MM-yyyy")}</p>
                 </div>
 
                 <div className="flex w-full items-center gap-8 justify-end">
