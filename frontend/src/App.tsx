@@ -9,6 +9,7 @@ import Predictions from './routes/Predictions'
 import Account from './routes/Account'
 import UserManagment from './routes/UserManagment'
 import UserView from './routes/UserView'
+import PredictionView from './routes/PredictionView'
 
 import { SidebarProvider } from "@/components/ui/sidebar"
 
@@ -24,6 +25,7 @@ function App() {
         { path: '/account', element: <Protected><Account /></Protected> },
         { path: '/users', element: <Protected><UserManagment /></Protected> },
         { path: '/users/:id', element: <Protected><UserView /></Protected> },
+        { path: '/predictions/:id', element: <Protected><PredictionView /></Protected> },
     ])
 
     return (
