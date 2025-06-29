@@ -45,7 +45,7 @@ export default function PredictionView() {
     }
 
 
-    const { data: user, isLoading: isLoadingUser, error: errorUser } = useQuery({
+    const { data: user, error: errorUser } = useQuery({
         queryKey: ['user'],
         queryFn: userAPI.getCurrentUser,
     })

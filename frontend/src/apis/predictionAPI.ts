@@ -10,7 +10,7 @@ export const predictionAPI = {
         return (await axios.get<PredictionType[]>(`/api/predictions/get/all`, axiosConfig)).data
     },
     getUserPredictions: async (userId: number) => {
-        return (await axios.get<PredictionType[]>(`/api/predictions/get/all${userId}`, axiosConfig)).data
+        return (await axios.get<PredictionType[]>(`/api/predictions/get/all/${userId}`, axiosConfig)).data
     },
     getPrediction: async (predictionId: number) => {
         return (await axios.get<PredictionType>(`/api/predictions/get/${predictionId}`, axiosConfig)).data

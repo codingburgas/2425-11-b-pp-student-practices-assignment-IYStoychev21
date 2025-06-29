@@ -21,6 +21,8 @@ import { useState } from "react";
 import { userAPI } from "@/apis/userAPI";
 import type { UserType, UpdateUserType } from "@/types/userTypes";
 import { type ErrorType } from "@/types/errorTypes";
+import { predictionAPI } from "@/apis/predictionAPI";
+import PredictionEntry from "@/components/PredictionEntry";
 
 export default function ModelView() {
     const { id } = useParams();
@@ -103,6 +105,11 @@ export default function ModelView() {
         updateUserMutation.mutate(data)
     }
 
+    const { data: userPredictions, isLoading: isLoadingUserPredictions } = useQuery({
+        queryKey: ['userPredictions'],
+        queryFn: () => predictionAPI.getUserPredictions(+id!),
+    })
+
     return (
         <>
             <AppSidebar />
@@ -165,6 +172,37 @@ export default function ModelView() {
 
                     isLoadingUser ? <Skeleton className="w-24 h-4" /> :
                         <h1 className="text-2xl m-4 mt-10">{`${user!.first_name} ${user!.last_name}'s predictions`}</h1>
+                }
+
+                {
+                    isLoadingUserPredictions ?
+                        <div>
+                            <Skeleton className="h-10 m-4" />
+                            <Skeleton className="h-10 m-4" />
+                            <Skeleton className="h-10 m-4" />
+                            <Skeleton className="h-10 m-4" />
+                        </div>
+                        :
+                        <div className="flex p-6 flex-col gap-5">
+                            <div className="flex items-center">
+                                <div className="flex w-full items-center grow">
+                                    <p className="grow w-[1%] gap-2">Title</p>
+                                    <p className="grow w-[1%] gap-2">Status</p>
+                                    <p className="grow w-[1%] gap-2">Time</p>
+                                    <p className="grow w-[1%] gap-2">Date</p>
+                                </div>
+
+                                <div className="flex w-full items-center gap-8 justify-end"></div>
+                            </div>
+
+                            {
+                                userPredictions && userPredictions.map((prediction) => {
+                                    return (
+                                        <PredictionEntry key={prediction!.id} prediction={prediction!} />
+                                    )
+                                })
+                            }
+                        </div>
                 }
             </SidebarInset>
         </>
