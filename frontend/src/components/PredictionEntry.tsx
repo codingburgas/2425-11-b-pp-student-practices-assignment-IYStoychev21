@@ -17,6 +17,7 @@ import {
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import { DateTime } from 'luxon'
+import { Badge } from "@/components/ui/badge"
 
 export default function PredictionEntry({ prediction }: { prediction: PredictionType }) {
     const [isDeleting, setIsDeleting] = useState(false);
@@ -39,7 +40,7 @@ export default function PredictionEntry({ prediction }: { prediction: Prediction
             <div className="flex items-center">
                 <div className="flex w-full items-center grow">
                     <p className="grow w-[1%] gap-2">{prediction.title}</p>
-                    <p className="grow w-[1%] gap-2">{prediction.prediction ? 'Approaved' : 'Rejected'}</p>
+                    <p className="grow w-[1%] gap-2">{prediction.prediction ? <Badge className="px-4 py-2">Approaved</Badge> : <Badge className="px-4 py-2" variant="destructive">Rejected</Badge>}</p>
                     <p className="grow w-[1%] gap-2">{DateTime.fromISO(prediction.created_at).toFormat("HH:mm:ss")}</p>
                     <p className="grow w-[1%] gap-2">{DateTime.fromISO(prediction.created_at).toFormat("dd-MM-yyyy")}</p>
                 </div>

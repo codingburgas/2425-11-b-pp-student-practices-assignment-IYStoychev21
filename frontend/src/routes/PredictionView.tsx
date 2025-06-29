@@ -8,8 +8,6 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Slash } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -19,7 +17,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { userAPI } from "@/apis/userAPI";
-import type { UserType, UpdateUserType } from "@/types/userTypes";
 import { type ErrorType } from "@/types/errorTypes";
 import { predictionAPI } from "@/apis/predictionAPI";
 import { DateTime } from "luxon";
