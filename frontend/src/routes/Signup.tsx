@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { toast } from "sonner"
 
-import { Bars } from 'react-loader-spinner';
+import { BarLoader } from 'react-spinners';
 
 export default function Signup() {
     const navigate = useNavigate()
@@ -59,14 +59,10 @@ export default function Signup() {
             {
                 signUpMutation.isPending ?
                     <div className="absolute top-0 left-0 right-0 bottom-0 z-30 bg-[#00000080] flex justify-center items-center">
-                        <Bars
+                        <BarLoader
                             height="80"
                             width="80"
                             color="#fff"
-                            ariaLabel="bars-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
                         />
                     </div> : null
             }
