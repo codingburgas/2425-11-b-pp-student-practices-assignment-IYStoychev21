@@ -6,9 +6,6 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
 } from "@/components/ui/breadcrumb"
-import { Skeleton } from "@/components/ui/skeleton";
-import PredictionEntry from "@/components/PredictionEntry";
-import { useQuery } from "@tanstack/react-query";
 import { predictionAPI } from "@/apis/predictionAPI";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
