@@ -11,7 +11,7 @@ app = FastAPI()
 app.add_middleware(auth_middleware.AuthMiddleware)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["http://localhost:5173", "https://gentle-tree-0f9312803.2.azurestaticapps.net"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
