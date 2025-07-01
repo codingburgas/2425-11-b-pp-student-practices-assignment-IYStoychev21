@@ -1,0 +1,84 @@
+{
+    "routes": [
+        {
+            "route": "/signup",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
+            "route": "/predictions",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
+            "route": "/account",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
+            "route": "/users",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
+            "route": "/users/:id",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
+            "route": "/predictions/:id",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
+            "route": "/predictions/new",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        },
+        {
+            "route": "/model",
+            "allowedRoles": [
+                "anonymous"
+            ]
+        }
+    ],
+    "navigationFallback": {
+        "rewrite": "index.html",
+        "exclude": [
+            "/images/.{png,jpg,gif}",
+            "/css/*"
+        ]
+    },
+    "responseOverrides": {
+        "400": {
+            "rewrite": "/"
+        },
+        "401": {
+            "redirect": "/"
+        },
+        "403": {
+            "rewrite": "/"
+        },
+        "404": {
+            "rewrite": "/index.html",
+            "statusCode": 200
+        }
+    },
+    "mimeTypes": {
+        ".js": "text/javascript",
+        ".mjs": "text/javascript",
+        ".jsx": "text/javascript",
+        ".tsx": "text/javascript",
+        ".ts": "text/javascript",
+        ".html": "text/html",
+        ".json": "text/json",
+        ".css": "text/css"
+    }
+}
