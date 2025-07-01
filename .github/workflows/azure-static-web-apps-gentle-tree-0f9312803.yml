@@ -40,4 +40,6 @@ jobs:
           app_location: "./frontend"
           api_location: ""
           output_location: "dist"
+        env:
+          VITE_BACKEND_URL: https://backend-api-practice.azurewebsites.net
 
