@@ -10,8 +10,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import PredictionEntry from "@/components/PredictionEntry";
 import { useQuery } from "@tanstack/react-query";
 import { predictionAPI } from "@/apis/predictionAPI";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function Predictions() {
+    const navigate = useNavigate()
+
     const { data: predictionsAll, isLoading: isLoadingPredictionsAll } = useQuery({
         queryKey: ['predictionsAll'],
         queryFn: predictionAPI.getCurrentUserPredictions,
@@ -31,6 +35,8 @@ export default function Predictions() {
                         </BreadcrumbList>
                     </Breadcrumb>
                 </header>
+
+                <Button onClick={() => navigate("/predictions/new")} className="w-fit px-6 py-4 m-6 cursor-pointer">New Model</Button>
 
                 {
                     isLoadingPredictionsAll ?

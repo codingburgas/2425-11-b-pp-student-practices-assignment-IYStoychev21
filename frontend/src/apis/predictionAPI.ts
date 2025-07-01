@@ -3,8 +3,8 @@ import { axiosConfig } from "./config/axiosConfig";
 import { type PredictionType, type PredictionInputType } from "@/types/predictionTypes";
 
 export const predictionAPI = {
-    createPrediction: async (predictionData: PredictionInputType) => {
-        return (await axios.post<PredictionType>(`/api/predictions/predict`, predictionData, axiosConfig)).data
+    createPrediction: async (predictionData: PredictionInputType, title: string) => {
+        return (await axios.post<PredictionType>(`/api/predictions/predict`, { ...predictionData, title: title }, axiosConfig)).data
     },
     getCurrentUserPredictions: async () => {
         return (await axios.get<PredictionType[]>(`/api/predictions/get/all`, axiosConfig)).data
