@@ -3,6 +3,19 @@ from db.config import TORTOISE_ORM
 from models import role_model, models_model
 
 async def init_db():
+    """
+    Initialize the database connection and seed default data.
+    
+    This function performs the following operations:
+    - Initializes Tortoise ORM with the database configuration
+    - Generates database schemas for all models
+    - Creates default user roles ('user' and 'admin') if they don't exist
+    - Creates default hyperparameters for ML model training if they don't exist
+    - Creates default train/test split configuration if it doesn't exist
+    
+    The function is idempotent - it can be called multiple times safely
+    as it checks for existing data before creating new records.
+    """
     await Tortoise.init(config=TORTOISE_ORM)
     await Tortoise.generate_schemas()
 

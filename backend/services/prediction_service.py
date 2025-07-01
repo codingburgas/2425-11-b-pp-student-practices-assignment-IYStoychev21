@@ -5,6 +5,20 @@ from ML import load_prediction_logistic_regression
 import numpy as np
 
 async def make_prediction(user_id: int, prediction_data: prediction_schema.PredictionCreate):
+    """
+    Create a new loan approval prediction using the trained ML model.
+    
+    Args:
+        user_id (int): The ID of the user making the prediction request
+        prediction_data (prediction_schema.PredictionCreate): Input data for the prediction
+                                                              including financial and personal information
+    
+    Returns:
+        Prediction: The prediction result with input data and approval/rejection decision
+        
+    Raises:
+        HTTPException: 404 if user does not exist
+    """
     user = await user_repository.get_user_by_id(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User does not exist")
@@ -38,6 +52,19 @@ async def make_prediction(user_id: int, prediction_data: prediction_schema.Predi
     return prediction_out
 
 async def get_predictions(user_id: int, user_to_retrieve_id: int):
+    """
+    Get all predictions for a specific user.
+    
+    Args:
+        user_id (int): The ID of the user making the request
+        user_to_retrieve_id (int): The ID of the user whose predictions to retrieve
+        
+    Returns:
+        list[Prediction]: List of predictions with input data and results
+        
+    Raises:
+        HTTPException: 404 if either user does not exist
+    """
     user = await user_repository.get_user_by_id(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User does not exist")
@@ -50,6 +77,19 @@ async def get_predictions(user_id: int, user_to_retrieve_id: int):
     return predictions
 
 async def delete_prediction(user_id: int, prediction_id: int):
+    """
+    Delete a specific prediction record.
+    
+    Args:
+        user_id (int): The ID of the user making the request
+        prediction_id (int): The ID of the prediction to delete
+        
+    Returns:
+        Prediction: The deleted prediction object
+        
+    Raises:
+        HTTPException: 404 if user or prediction does not exist
+    """
     user = await user_repository.get_user_by_id(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User does not exist")
@@ -62,6 +102,19 @@ async def delete_prediction(user_id: int, prediction_id: int):
     return prediction
 
 async def get_prediction(user_id: int, prediction_id: int):
+    """
+    Get a specific prediction by its ID.
+    
+    Args:
+        user_id (int): The ID of the user making the request
+        prediction_id (int): The ID of the prediction to retrieve
+        
+    Returns:
+        Prediction: The prediction object with input data and result
+        
+    Raises:
+        HTTPException: 404 if user or prediction does not exist
+    """
     user = await user_repository.get_user_by_id(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User does not exist")

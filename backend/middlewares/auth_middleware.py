@@ -7,7 +7,28 @@ from core import security
 EXCLUDE_PATHS = {"/api/auth/login", "/api/auth/register", "/docs", "/openapi.json"}
 
 class AuthMiddleware(BaseHTTPMiddleware):
+    """
+    Authentication middleware for validating JWT tokens.
+    
+    This middleware intercepts all requests except those in EXCLUDE_PATHS,
+    validates the JWT token in the Authorization header, and injects the
+    user ID into the request state for use by protected endpoints.
+    
+    Attributes:
+        EXCLUDE_PATHS: Set of paths that don't require authentication
+    """
+    
     async def dispatch(self, request: Request, call_next):
+        """
+        Process the request through authentication middleware.
+        
+        Args:
+            request (Request): The incoming HTTP request
+            call_next: The next middleware or endpoint to call
+            
+        Returns:
+            Response: The response from the next handler or an error response
+        """
         if request.url.path in EXCLUDE_PATHS:
             return await call_next(request)
 

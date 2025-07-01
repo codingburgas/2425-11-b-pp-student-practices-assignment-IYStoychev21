@@ -5,6 +5,18 @@ from schemas import auth_schema
 import bcrypt
 
 async def login_user(login_data: auth_schema.Login):
+    """
+    Authenticate a user and return a JWT token.
+    
+    Args:
+        login_data (auth_schema.Login): User login credentials containing username and password
+        
+    Returns:
+        dict: Dictionary containing the JWT access token
+        
+    Raises:
+        HTTPException: 400 if credentials are invalid or empty
+    """
     if not login_data.password.strip():
         raise HTTPException(status_code=400, detail="Password can't be empty")
 
@@ -22,6 +34,19 @@ async def login_user(login_data: auth_schema.Login):
     return {"token": token}
 
 async def register_user(user_data: auth_schema.UserCreate):
+    """
+    Register a new user in the system.
+    
+    Args:
+        user_data (auth_schema.UserCreate): User registration data containing username,
+                                          password, first_name, and last_name
+        
+    Returns:
+        User: The newly created user object
+        
+    Raises:
+        HTTPException: 400 if validation fails or username already exists
+    """
     if not user_data.username.strip():
         raise HTTPException(status_code=400, detail="Username can't be empty")
 

@@ -19,6 +19,19 @@ app.add_middleware(
 
 @app.on_event("startup")
 async def startup_event():
+    """
+    Initialize the application on startup.
+    
+    This function is called when the FastAPI application starts up. It performs
+    the following initialization tasks:
+    - Initializes the database connection and creates schemas
+    - Retrieves hyperparameters and train/test split configuration
+    - Trains a new machine learning model if parameters don't exist
+    - Stores model parameters and metrics in the database
+    
+    The ML model is only trained once on startup if no existing parameters
+    are found in the database.
+    """
     await init_db()
 
     hyper_params = await models_repository.get_hyper_params()
