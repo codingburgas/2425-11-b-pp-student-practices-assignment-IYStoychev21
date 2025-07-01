@@ -1,7 +1,7 @@
 from fastapi.exceptions import HTTPException
-from backend.repositories import models_repository, prediction_repository, user_repository
-from backend.schemas import prediction_schema
-from backend.ML import load_prediction_logistic_regression
+from repositories import models_repository, prediction_repository, user_repository
+from schemas import prediction_schema
+from ML import load_prediction_logistic_regression
 import numpy as np
 
 async def make_prediction(user_id: int, prediction_data: prediction_schema.PredictionCreate):

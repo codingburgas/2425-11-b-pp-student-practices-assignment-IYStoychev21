@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request, Depends
-from backend.schemas import user_schema
-from backend.services import  user_service
+from schemas import user_schema
+from services import  user_service
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 router = APIRouter()

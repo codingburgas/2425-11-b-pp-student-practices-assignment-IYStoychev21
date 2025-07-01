@@ -1,6 +1,6 @@
 from tortoise import Tortoise
-from backend.db.config import TORTOISE_ORM
-from backend.models import role_model, models_model
+from db.config import TORTOISE_ORM
+from models import role_model, models_model
 
 async def init_db():
     await Tortoise.init(config=TORTOISE_ORM)

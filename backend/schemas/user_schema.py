@@ -1,6 +1,6 @@
 from typing_extensions import Optional
 from pydantic import BaseModel
-from backend.schemas import role_schema
+from schemas import role_schema
 
 class UserOut(BaseModel):
     id: int

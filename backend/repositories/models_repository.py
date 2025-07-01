@@ -1,4 +1,4 @@
-from backend.models import models_model
+from models import models_model
 import json
 
 async def get_hyper_params():

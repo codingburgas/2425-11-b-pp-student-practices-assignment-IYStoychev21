@@ -1,9 +1,9 @@
 from fastapi import FastAPI
-from backend.db.init import init_db
-from backend.api.endpoints import auth_endpoints, user_endpoints, prediction_endpoints, model_endpoints
-from backend.middlewares import auth_middleware
-from backend.ML import load_prediction_logistic_regression
-from backend.repositories import models_repository
+from db.init import init_db
+from api.endpoints import auth_endpoints, user_endpoints, prediction_endpoints, model_endpoints
+from middlewares import auth_middleware
+from ML import load_prediction_logistic_regression
+from repositories import models_repository
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()

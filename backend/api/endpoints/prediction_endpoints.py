@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, Request
-from backend.schemas import prediction_schema
-from backend.services import prediction_service
+from schemas import prediction_schema
+from services import prediction_service
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 router = APIRouter()

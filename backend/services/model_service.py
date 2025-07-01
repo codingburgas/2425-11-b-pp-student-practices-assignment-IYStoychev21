@@ -1,5 +1,5 @@
 from fastapi.exceptions import HTTPException
-from backend.repositories import models_repository
+from repositories import models_repository
 
 async def get_model():
     model = await models_repository.get_model()

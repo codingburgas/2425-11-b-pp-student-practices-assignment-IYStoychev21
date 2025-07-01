@@ -2,7 +2,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 from fastapi import Request
 from jose import JWTError
-from backend.core import security
+from core import security
 
 EXCLUDE_PATHS = {"/api/auth/login", "/api/auth/register", "/docs", "/openapi.json"}
 

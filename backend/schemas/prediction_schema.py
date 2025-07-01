@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from backend.schemas import user_schema
+from schemas import user_schema
 from datetime import datetime
 
 class PredictionCreate(BaseModel):

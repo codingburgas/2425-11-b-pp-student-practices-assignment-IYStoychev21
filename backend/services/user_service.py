@@ -1,6 +1,6 @@
 from fastapi.exceptions import HTTPException
-from backend.repositories import user_repository
-from backend.schemas import user_schema
+from repositories import user_repository
+from schemas import user_schema
 
 async def get_current_user(user_id: int):
     user = await user_repository.get_user_by_id(user_id)

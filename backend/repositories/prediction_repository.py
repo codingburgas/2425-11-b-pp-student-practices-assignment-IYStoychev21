@@ -1,6 +1,6 @@
-from backend.models import predictions_model
-from backend.schemas import prediction_schema
-from backend.models import user_model, predictions_model
+from models import predictions_model
+from schemas import prediction_schema
+from models import user_model, predictions_model
 
 async def insert_prediction_input(prediction_data: prediction_schema.PredictionCreate):
     return await predictions_model.PredictionInputs.create(

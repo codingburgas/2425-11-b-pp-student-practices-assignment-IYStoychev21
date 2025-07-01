@@ -1,7 +1,7 @@
 from fastapi.exceptions import HTTPException
-from backend.repositories import user_repository
-from backend.core.security import create_access_token
-from backend.schemas import auth_schema
+from repositories import user_repository
+from core.security import create_access_token
+from schemas import auth_schema
 import bcrypt
 
 async def login_user(login_data: auth_schema.Login):

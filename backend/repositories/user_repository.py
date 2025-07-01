@@ -1,5 +1,5 @@
-from backend.models import user_model, role_model
-from backend.schemas import user_schema
+from models import user_model, role_model
+from schemas import user_schema
 
 async def get_user_by_username(username: str):
     try:
