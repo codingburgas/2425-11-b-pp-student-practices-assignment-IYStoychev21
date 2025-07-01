@@ -36,7 +36,7 @@ export default function Predictions() {
                     </Breadcrumb>
                 </header>
 
-                <Button onClick={() => navigate("/predictions/new")} className="w-fit px-6 py-4 m-6 cursor-pointer">New Model</Button>
+                <Button onClick={() => navigate("/predictions/new")} className="w-fit px-6 py-4 m-6 cursor-pointer">New Prediction</Button>
 
                 {
                     isLoadingPredictionsAll ?

@@ -19,7 +19,7 @@ services:
         build: 
           context: backend
           dockerfile: Dockerfile
-        command: "fastapi dev main.py --host 0.0.0.0"
+        command: "uvicorn main:app --host 0.0.0.0"
         depends_on:
             - db
         ports:
@@ -28,14 +28,6 @@ services:
             - ./backend:/backend
         env_file:
             - .env
-        environment:
-            - PORT=8000
-            - DB_HOST=db
-            - DB_PORT=5432
-            - DB_USER=postgres
-            - DB_PASSWORD=postgres
-            - DB_NAME=postgres
-            - JWT_SECRET=thisisonlyfordevelopment
 
     db:
         image: postgres:16
