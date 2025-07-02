@@ -1,5 +1,5 @@
 import { type PredictionType } from "@/types/predictionTypes"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { predictionAPI } from "@/apis/predictionAPI";
@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/alert-dialog"
 import { DateTime } from 'luxon'
 import { Badge } from "@/components/ui/badge"
+import { userAPI } from "@/apis/userAPI";
+import { useQuery } from "@tanstack/react-query";
 
 export default function PredictionEntry({ prediction }: { prediction: PredictionType }) {
     const [isDeleting, setIsDeleting] = useState(false);
@@ -35,6 +37,21 @@ export default function PredictionEntry({ prediction }: { prediction: Prediction
         },
     });
 
+    const { data: user, isLoading: isLoadingUser, error: errorUser } = useQuery({
+    queryKey: ['user'],
+    queryFn: userAPI.getCurrentUser,
+    })
+
+    useEffect(() => {
+        if (errorUser) {
+            // @ts-expect-error The error the I return includes .response always
+            if (errorUser.response.status === 401) {
+                localStorage.removeItem('token')
+                navigate('/')
+            }
+        }
+    }, [errorUser, navigate])
+
     return (
         <>
             <div className="flex items-center">
@@ -46,8 +63,12 @@ export default function PredictionEntry({ prediction }: { prediction: Prediction
                 </div>
 
                 <div className="flex w-full items-center gap-8 justify-end">
-                    <Button className="cursor-pointer" variant="secondary" onClick={() => { navigate(`/predictions/${prediction.id}`) }}>View</Button>
-                    <Button className="cursor-pointer" variant="destructive" onClick={() => { setIsDeleting(true) }}>Delete</Button>
+                    <Button className="cursor-pointer" variant="secondary" onClick={() => { navigate(`/predictions/${prediction.id}`) }}>View</Button>                    
+                    {
+                        !isLoadingUser? 
+                            prediction.user.id == user?.id || user?.role.id == 2? 
+                                <Button className="cursor-pointer" variant="destructive" onClick={() => { setIsDeleting(true) }}>Delete</Button>: null: null
+                    }
                 </div>
             </div>
             <AlertDialog open={isDeleting} onOpenChange={setIsDeleting}>
